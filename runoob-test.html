@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>小何搞机日记</title>
+    <meta name="description" content="抖音搜索小何搞机日记">
+    <meta name="keywords" content="讯领DIY电脑">
+    <link rel="stylesheet" href="static/css/bootstrap.min.css">
+    <link rel="stylesheet" href="static/css/all.min.css">
+    <link rel="stylesheet" href="static/css/style.css">
+    <link rel="shortcut icon" type="image/x-icon" href="css/favicon.ico">
+    <style>
+        /* 全局样式优化 */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        
+        /* 主容器边框美化 */
+        #main {
+            padding: 20px 0;
+        }
+        
+        .card {
+            border: 1px solid #e8e8e8; /* 柔和的卡片边框 */
+            border-radius: 12px; /* 圆角更美观 */
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05); /* 轻微阴影提升层次 */
+            padding: 30px 20px; /* 内边距优化 */
+            margin: 0 auto;
+        }
+        
+        /* 搜索框样式 */
+        .searchBox{
+            width: 65%;
+            height: 37px;
+            border: 2px solid #004085;
+            outline: none; /* 修正原hidden错误 */
+            border-radius: 6px; /* 搜索框圆角优化 */
+            margin: 0 auto;
+            position: relative;
+            transition: border-color 0.3s ease;
+        }
+        
+        .searchBox:focus-within {
+            border-color: #0062cc; /* 输入时边框变色 */
+        }
+        
+        .inputBox{
+            border: none;
+            width: 90%;
+            height: 33px;
+            line-height: 35px;
+            outline: none;
+            padding-left: 8px;
+            caret-color: #008B8B;
+            font-size: 16px;
+            background: transparent;
+        }
+        
+        .searchBtn{
+            width: 76px;
+            height: 33px;
+            border: none;
+            position: absolute;
+            right: 0;
+            top: 0;
+            outline: none;
+            color: white;
+            font-size: 13px;
+            background-color: #004085;
+            border-radius: 0 4px 4px 0; /* 按钮圆角匹配搜索框 */
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        
+        .searchBtn:hover{
+            background-color: #0062cc;
+        }
+        
+        /* 按钮样式优化 */
+        .btn-item {
+            width: auto;
+            height: 36px;
+            color: #fff;
+            font-size: 16px;
+            background-color: #004085;
+            border: 0;
+            text-align: center;
+            text-decoration: none;
+            padding: 6px 12px;
+            margin-left: 1%;     
+            margin-top: 1%;
+            display: inline-block;
+            white-space: nowrap;
+            border-radius: 6px; /* 按钮圆角统一 */
+            transition: background-color 0.3s ease;
+        }
+        
+        .btn-item:hover {
+            background-color: #0062cc;
+            color: #fff;
+            text-decoration: none;
+            box-shadow: 0 2px 5px rgba(0, 64, 133, 0.3);
+        }
+        
+        /* 分类容器样式 */
+        .category-container {
+            width: 100%;
+            overflow: hidden;
+            margin: 15px 0;
+            padding: 10px;
+            border-left: 3px solid #004085; /* 分类左侧边框装饰 */
+            background-color: #f9f9f9; /* 分类背景色区分 */
+            border-radius: 0 6px 6px 0;
+        }
+        
+        /* 标题样式优化 */
+        .category-title {
+            margin: 25px 0 10px 0;
+            color: #004085;
+            font-weight: 600;
+            padding-bottom: 8px;
+            border-bottom: 1px solid #e8e8e8; /* 标题下边框分隔 */
+        }
+        
+        /* 备案信息样式 - 完全居中+美化 */
+        .beian-container {
+            width: 100%;
+            margin: 30px 0 10px 0; /* 增加上下间距 */
+            padding-top: 15px;
+            border-top: 1px solid #e8e8e8; /* 顶部边框分隔 */
+            text-align: center !important; /* 强制居中 */
+        }
+        
+        .beian-link {
+            color: #666;
+            text-decoration: none;
+            font-size: 14px;
+            transition: color 0.3s ease;
+        }
+        
+        .beian-link:hover {
+            color: #004085;
+            text-decoration: none;
+        }
+        
+        /* 响应式适配 */
+        @media (max-width: 768px) {
+            .searchBox {
+                width: 90%; /* 移动端搜索框更宽 */
+            }
+            .btn-item {
+                font-size: 14px;
+                margin-left: 0.5%;
+                padding: 6px 8px;
+            }
+            .card {
+                padding: 20px 15px;
+            }
+        }
+    </style>
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+</head>
+
+<body>
+    <div id="main" class="container">
+        <div class="row my-card justify-content-center">
+            <div class="col-lg-8 card">
+                <div style="height: 1.2em;"></div>
+                <div style="text-align: center;">
+                    <img src="static/picture/logo.png" alt="讯领DIY电脑导航">
+                </div>
+                <div style="height: 1.5em;"></div>
+
+                <!-- 搜索框 -->
+                <div class="searchBox">
+                    <form action="https://www.baidu.com/baidu" target="_blank">
+                        <input name="tn" type="hidden" value="baidu">
+                        <input class="inputBox" type="text" name="word" size="30" placeholder="请输入搜索内容...">
+                        <input class="searchBtn" type="submit" value="百度一下">
+                    </form>
+                </div>
+
+                <div style="height: 1.5em;"></div>
+
+                <!-- 便捷工具分类 -->
+                <h3 class="category-title">【便捷工具】</h3>
+                <div class="category-container">
+                    <a target="_blank" href="https://filehelper.weixin.qq.com/" class="btn-item">微信传输助手</a>
+                    <a target="_blank" href="https://www.tbtool.cn/" class="btn-item">图吧工具箱</a>
+                    <a target="_blank" href="https://next.itellyou.cn/" class="btn-item">NEXT, ITELLYOU直达</a>
+                    <a target="_blank" href="https://xiaodao.lanzoux.com/iCN0Z11r807a" class="btn-item">软件管理</a>
+                    <a target="_blank" href="http://www.yishimei.cn/network/319.html" class="btn-item">非常好用的激活工具</a>
+                    <a target="_blank" href="http://www.ludashi.com/rank/cpuRanking.html" class="btn-item">鲁大师CPU天梯图</a>
+                    <a target="_blank" href="http://www.ludashi.com/rank/index.html" class="btn-item">鲁大师显卡天梯图</a>
+                </div>
+
+                <!-- 装机工具分类 -->
+                <h3 class="category-title">【装机工具】</h3>
+                <div class="category-container">
+                    <a target="_blank" href="https://xiaodao.lanzoui.com/ilMRz2ng9igf" class="btn-item">DDU显卡卸载工具</a>
+                    <a target="_blank" href="https://www.amd.com/zh-cn/support/download/drivers.html" class="btn-item">A卡显卡驱动</a>
+                    <a target="_blank" href="https://www.nvidia.cn/drivers/lookup/" class="btn-item">N卡显卡驱动</a>
+                    <a target="_blank" href="https://xiaodao.lanzout.com/iojuO2ff7ydc" class="btn-item">驱动总裁单机版</a>
+                    <a target="_blank" href="https://zhuoge.lanzoul.com/igsUm1aa7gni" class="btn-item">激活工具</a>
+                    <a target="_blank" href="https://zhuoge.lanzoul.com/ipMpB2fz4g0d" class="btn-item">KMS激活工具</a>
+                    <a target="_blank" href="https://xiaodao.lanzoux.com/iXUwbkv00ta" class="btn-item">鲁大师超级纯净版</a>
+                    <a target="_blank" href="https://xiaogao.lanzoui.com/izeAr2fuvxsf" class="btn-item">硬盘测速工具</a>
+                    <a target="_blank" href="https://xiaogao.lanzouv.com/iwnpm2dkr4na" class="btn-item">HDCleaner 系统清理优化</a>
+                    <a target="_blank" href="https://zhuoge.lanzoul.com/iPo2l2p5ky0h" class="btn-item">WinRAR压缩</a>
+                    <a target="_blank" href="https://www.speedtest.cn/" class="btn-item">测网速</a>
+                    <a target="_blank" href="https://www.lanzoum.com/b0cvyyowd" class="btn-item">鲁大师驱动单独版</a>
+                    <a target="_blank" href="https://xiaogao.lanzoui.com/isPGy0rixc2d" class="btn-item">引导修复</a>
+                </div>
+
+                <!-- 常用工具分类 -->
+                <h3 class="category-title">【常用工具】</h3>
+                <div class="category-container">
+                    <a target="_blank" href="https://xiaodao.lanzout.com/ifk7I2aky6sb" class="btn-item">火绒弹窗拦截单机版</a>
+                    <a target="_blank" href="https://xiaogao.lanzoui.com/ijqDZ2o40evg" class="btn-item">系统垃圾清理工具</a>
+                    <a target="_blank" href="https://xiaogao.lanzouv.com/ipCKD2gxp6jc" class="btn-item">网络测试工具</a>
+                    <a target="_blank" href="https://xiaogao.lanzoum.com/ivsNh1icmrgh" class="btn-item">蓝屏代码查询工具</a>
+                    <a target="_blank" href="https://xiaogao.lanzoux.com/iPWtn0zm6t0d" class="btn-item">屏蔽系统自动更新工具</a>
+                    <a target="_blank" href="https://xiaogao.lanzouv.com/ih6LL2qfx7pe" class="btn-item">Fan Control风扇控制</a>
+                    <a target="_blank" href="https://xiaogao.lanzoum.com/b0cz86g5i" class="btn-item">微软运行库每月更新</a>
+                    <a target="_blank" href="https://download.gigabyte.cn/FileList/Utility/mb_utility_atbios_B24.0130.1.zip?v=792b86971cbb961cea4086323e0aff75" class="btn-item">技嘉@BIOS工具</a>
+                    <a target="_blank" href="https://xiaogao.lanzoux.com/iSWW82p08q7e" class="btn-item">PotPlayer 播放器绿色版</a>
+                </div>
+
+                <!-- 各大软件官网分类 -->
+                <h3 class="category-title">【各大软件官网】</h3>
+                <div class="category-container">
+                    <a target="_blank" href="https://store.steampowered.com/about/" class="btn-item">STEAM正版下载地址</a>
+                    <a target="_blank" href="https://www.gigabyte.cn/" class="btn-item">技嘉BIOS搜索</a>
+                    <a target="_blank" href="https://www.msi.cn/search/MPG%20B760I%20EDGE%20WIFI%20DDR4" class="btn-item">微星BIOS搜索</a>
+                    <a target="_blank" href="https://www.maxsun.com.cn/down/mb/intel/" class="btn-item">铭瑄BIOS搜索</a>
+                    <a target="_blank" href="https://www.asus.com.cn/support/download-center/" class="btn-item">华硕BIOS搜索</a>
+                    <a target="_blank" href="https://www.msi.cn/Landing/afterburner/graphics-cards" class="btn-item">微星小飞机</a>
+                    <a target="_blank" href="https://www.xunlei.com/" class="btn-item">迅雷官网</a>
+                    <a target="_blank" href="https://sunlogin.oray.com/download?categ=personal&sys=windows&ici=sunlogin_navigation" class="btn-item">向日葵下载地址</a>
+                </div>
+
+                <!-- 各品牌主板灯控下载地址分类 -->
+                <h3 class="category-title">【各品牌主板灯控下载地址】</h3>
+                <div class="category-container">
+                    <a target="_blank" href="https://www.asus.com.cn/supportonly/armoury%20crate/helpdesk_download/" class="btn-item">华硕奥创全系列</a>
+                    <a target="_blank" href="https://download.gigabyte.cn/FileList/Utility/GCC_25.02.07.01.zip?v=b26897f9d866da6eb9147fb2e0f15cb7" class="btn-item">技嘉GCC灯控</a>
+                    <a target="_blank" href="https://www.msi.com/Landing/MSI-Center" class="btn-item">微星灯控</a>
+                    <a target="_blank" href="https://download.maxsun.com.cn:8443/mb/driver/MAXSUN_Software/RGB/MAXSUN_RGB.zip" class="btn-item">铭瑄灯控直接下载</a>
+                </div>
+
+                <!-- 备案信息 - 独立容器完全居中 -->
+                <div class="beian-container">
+                    <h4 class="mb-0">
+                        <a href="https://beian.miit.gov.cn/" target="_blank" class="beian-link">粤ICP备20250051282号</a>
+                    </h4>
+                </div>
+            </div>
+        </div>
+        <div class="footer">
+            <footer class="mt-3 text-center text-muted">
+                <script>
+                    var _hmt = _hmt || [];
+                    (function() {
+                      var hm = document.createElement("script");
+                      hm.src = "https://hm.baidu.com/hm.js?5ce69e3ae576e114af1409afc93de74f";
+                      var s = document.getElementsByTagName("script")[0]; 
+                      s.parentNode.insertBefore(hm, s);
+                    })();
+                </script>
+            </footer>
+        </div>
+    </div>
+</body>
