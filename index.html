@@ -1,14 +1,15 @@
 <!DOCTYPE html>
+<html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>小何搞机日记</title>
     <meta name="description" content="抖音搜索小何搞机日记">
-    <meta name="keywords" content="讯领DIY电脑">
+    <meta name="keywords" content="讯领DIY电脑,东莞DIY电脑">
     <link rel="stylesheet" href="static/css/bootstrap.min.css">
     <link rel="stylesheet" href="static/css/all.min.css">
     <link rel="stylesheet" href="static/css/style.css">
-    <link rel="shortcut icon" type="image/x-icon" href="css/favicon.ico">
+    <link rel="shortcut icon" type="image/x-icon" href="static/images/favicon.ico">
     <style>
         /* 全局样式优化 */
         * {
@@ -30,12 +31,29 @@
             margin: 0 auto;
         }
         
-        /* 新增：logo图片样式优化 */
+        /* 标题栏样式 - 包含logo和文字 */
+        .title-bar {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        
+        /* logo图片样式优化 */
         .nav-logo {
-            max-width: 80%;
-            height: auto; /* 保持宽高比，防止变形 */
-            max-height: 150px;
-            border-radius: 8px; /* 可选：圆角美化 */
+            width: 60px; /* 固定logo宽度 */
+            height: 60px; /* 固定logo高度 */
+            object-fit: cover; /* 保持图片比例 */
+            border-radius: 8px; /* 圆角美化 */
+        }
+        
+        /* 标题文字样式 */
+        .main-title {
+            font-size: 24px;
+            font-weight: 700;
+            color: #004085;
+            margin: 0;
         }
         
         /* 搜索框样式 */
@@ -166,10 +184,16 @@
             .card {
                 padding: 20px 15px;
             }
-            /* 移动端图片适配 */
+            /* 移动端标题栏适配 */
+            .title-bar {
+                gap: 10px;
+            }
             .nav-logo {
-                max-width: 90%;
-                max-height: 120px;
+                width: 45px;
+                height: 45px;
+            }
+            .main-title {
+                font-size: 18px;
             }
         }
     </style>
@@ -180,12 +204,11 @@
     <div id="main" class="container">
         <div class="row my-card justify-content-center">
             <div class="col-lg-8 card">
-                <div style="height: 1.2em;"></div>
-                <div style="text-align: center;">
-                    <!-- 新增class="nav-logo"控制图片大小 -->
+                <!-- Logo和标题组合栏 -->
+                <div class="title-bar">
                     <img src="static/images/123.jpg" alt="讯领DIY电脑导航" class="nav-logo">
+                    <h1 class="main-title">东莞DIY电脑 | 小何搞机日记</h1>
                 </div>
-                <div style="height: 1.5em;"></div>
 
                 <!-- 搜索框 -->
                 <div class="searchBox">
@@ -294,3 +317,4 @@
         </div>
     </div>
 </body>
+</html>
