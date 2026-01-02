@@ -19,54 +19,44 @@
             padding: 0;
         }
         
-        body {
-            padding: 10px 0;
-            background-color: #f5f5f5;
-        }
-        
         /* 主容器边框美化 */
         #main {
-            padding: 10px 5px;
+            padding: 20px 0;
         }
         
         .card {
             border: 1px solid #e8e8e8; /* 柔和的卡片边框 */
             border-radius: 12px; /* 圆角更美观 */
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05); /* 轻微阴影提升层次 */
-            padding: 60px 15px 20px; /* 顶部预留抖音按钮空间，减少左右内边距 */
+            padding: 30px 20px; /* 内边距优化 */
             margin: 0 auto;
             position: relative; /* 新增：为抖音按钮绝对定位做准备 */
-            background-color: #fff;
-            max-width: 100%;
         }
 
         /* 抖音跳转按钮样式 */
         .douyin-btn {
             position: absolute;
-            top: 15px;
-            left: 50%;
-            transform: translateX(-50%); /* 居中显示，更适合移动端 */
+            top: 20px;
+            left: 20px;
             display: inline-flex;
             align-items: center;
             gap: 8px;
-            padding: 10px 20px;
+            padding: 8px 16px;
             background: linear-gradient(135deg, #fe2c55 0%, #ff7a2f 100%);
             color: white !important;
-            border-radius: 25px; /* 移动端更圆润 */
+            border-radius: 8px;
             text-decoration: none;
-            font-size: 15px;
+            font-size: 14px;
             font-weight: 500;
             box-shadow: 0 3px 8px rgba(254, 44, 85, 0.3);
             transition: all 0.3s ease;
             z-index: 10;
             border: none;
             cursor: pointer;
-            width: 90%;
-            justify-content: center;
         }
 
         .douyin-btn:hover {
-            transform: translateX(-50%) translateY(-2px);
+            transform: translateY(-2px);
             box-shadow: 0 5px 15px rgba(254, 44, 85, 0.4);
             text-decoration: none;
             color: white !important;
@@ -75,45 +65,54 @@
         .douyin-btn i {
             font-size: 18px;
         }
+
+        /* 响应式适配抖音按钮 */
+        @media (max-width: 768px) {
+            .douyin-btn {
+                padding: 6px 12px;
+                font-size: 12px;
+                top: 15px;
+                left: 15px;
+            }
+            .douyin-btn i {
+                font-size: 16px;
+            }
+        }
         
         /* 标题栏样式 - 包含logo和文字 */
         .title-bar {
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 10px;
+            gap: 15px;
             margin-bottom: 20px;
-            flex-wrap: wrap; /* 允许换行 */
-            padding: 0 10px;
+            margin-top: 10px; /* 新增：给抖音按钮留出空间 */
         }
         
         /* logo图片样式优化 */
         .nav-logo {
-            width: 50px; /* 移动端缩小logo */
-            height: 50px; /* 移动端缩小logo */
+            width: 60px; /* 固定logo宽度 */
+            height: 60px; /* 固定logo高度 */
             object-fit: cover; /* 保持图片比例 */
             border-radius: 8px; /* 圆角美化 */
         }
         
         /* 标题文字样式 */
         .main-title {
-            font-size: 20px; /* 移动端缩小标题 */
+            font-size: 24px;
             font-weight: 700;
             color: #004085;
             margin: 0;
-            text-align: center;
-            width: 100%;
-            margin-top: 10px;
         }
         
-        /* 搜索框样式 - 移动端优化 */
+        /* 搜索框样式 */
         .searchBox{
-            width: 95%; /* 移动端占满宽度 */
-            height: 45px; /* 增大触控区域 */
+            width: 65%;
+            height: 37px;
             border: 2px solid #004085;
-            outline: none;
-            border-radius: 8px; /* 更大的圆角 */
-            margin: 0 auto 20px;
+            outline: none; /* 修正原hidden错误 */
+            border-radius: 6px; /* 搜索框圆角优化 */
+            margin: 0 auto;
             position: relative;
             transition: border-color 0.3s ease;
         }
@@ -124,28 +123,28 @@
         
         .inputBox{
             border: none;
-            width: calc(100% - 85px); /* 自适应 */
-            height: 41px; /* 增大高度 */
-            line-height: 41px;
+            width: 90%;
+            height: 33px;
+            line-height: 35px;
             outline: none;
-            padding-left: 12px;
+            padding-left: 8px;
             caret-color: #008B8B;
-            font-size: 17px; /* 移动端增大字体 */
+            font-size: 16px;
             background: transparent;
         }
         
         .searchBtn{
-            width: 80px;
-            height: 41px; /* 增大高度 */
+            width: 76px;
+            height: 33px;
             border: none;
             position: absolute;
             right: 0;
             top: 0;
             outline: none;
             color: white;
-            font-size: 15px; /* 增大字体 */
+            font-size: 13px;
             background-color: #004085;
-            border-radius: 0 6px 6px 0; /* 按钮圆角匹配搜索框 */
+            border-radius: 0 4px 4px 0; /* 按钮圆角匹配搜索框 */
             cursor: pointer;
             transition: background-color 0.3s ease;
         }
@@ -154,26 +153,23 @@
             background-color: #0062cc;
         }
         
-        /* 按钮样式优化 - 移动端重点优化 */
+        /* 按钮样式优化 */
         .btn-item {
-            width: calc(48% - 5px); /* 每行2个按钮，留出间距 */
-            height: 45px; /* 增大触控高度 */
+            width: auto;
+            height: 36px;
             color: #fff;
-            font-size: 15px; /* 增大字体 */
+            font-size: 16px;
             background-color: #004085;
             border: 0;
             text-align: center;
             text-decoration: none;
-            padding: 10px 5px;
-            margin: 5px 2.5px; /* 统一间距 */
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            white-space: normal; /* 允许文字换行 */
-            border-radius: 8px; /* 更大的圆角 */
+            padding: 6px 12px;
+            margin-left: 1%;     
+            margin-top: 1%;
+            display: inline-block;
+            white-space: nowrap;
+            border-radius: 6px; /* 按钮圆角统一 */
             transition: background-color 0.3s ease;
-            word-break: break-word; /* 强制换行 */
-            line-height: 1.2; /* 行高适配 */
         }
         
         .btn-item:hover {
@@ -187,24 +183,20 @@
         .category-container {
             width: 100%;
             overflow: hidden;
-            margin: 20px 0;
-            padding: 15px 10px;
+            margin: 15px 0;
+            padding: 10px;
             border-left: 3px solid #004085; /* 分类左侧边框装饰 */
             background-color: #f9f9f9; /* 分类背景色区分 */
-            border-radius: 0 8px 8px 0;
-            display: flex;
-            flex-wrap: wrap; /* 关键：按钮自动换行 */
-            justify-content: flex-start;
+            border-radius: 0 6px 6px 0;
         }
         
         /* 标题样式优化 */
         .category-title {
-            margin: 25px 0 15px 10px;
+            margin: 25px 0 10px 0;
             color: #004085;
             font-weight: 600;
             padding-bottom: 8px;
             border-bottom: 1px solid #e8e8e8; /* 标题下边框分隔 */
-            font-size: 18px;
         }
         
         /* 备案信息样式 - 完全居中+美化 */
@@ -221,8 +213,6 @@
             text-decoration: none;
             font-size: 14px;
             transition: color 0.3s ease;
-            display: inline-block;
-            padding: 5px 0;
         }
         
         .beian-link:hover {
@@ -230,88 +220,30 @@
             text-decoration: none;
         }
         
-        /* 响应式适配 - 针对不同屏幕优化 */
+        /* 响应式适配 */
         @media (max-width: 768px) {
-            /* 小屏手机每行1个按钮 */
-            @media (max-width: 480px) {
-                .btn-item {
-                    width: calc(100% - 10px); /* 单行显示 */
-                    margin: 5px;
-                }
-                
-                .main-title {
-                    font-size: 18px;
-                }
-                
-                .douyin-btn {
-                    font-size: 14px;
-                    padding: 8px 15px;
-                }
-                
-                .inputBox {
-                    font-size: 16px;
-                }
+            .searchBox {
+                width: 90%; /* 移动端搜索框更宽 */
             }
-            
+            .btn-item {
+                font-size: 14px;
+                margin-left: 0.5%;
+                padding: 6px 8px;
+            }
             .card {
-                padding: 70px 10px 20px;
-                margin: 0 5px;
+                padding: 20px 15px;
             }
-            
+            /* 移动端标题栏适配 */
             .title-bar {
-                gap: 8px;
+                gap: 10px;
+                margin-top: 5px;
             }
-            
             .nav-logo {
                 width: 45px;
                 height: 45px;
             }
-            
-            .category-title {
-                font-size: 17px;
-                margin-left: 5px;
-            }
-            
-            .searchBox {
-                height: 42px;
-            }
-            
-            .inputBox {
-                height: 38px;
-                line-height: 38px;
-            }
-            
-            .searchBtn {
-                height: 38px;
-                font-size: 14px;
-            }
-        }
-        
-        /* 大屏适配 */
-        @media (min-width: 769px) {
-            .btn-item {
-                width: calc(31% - 8px); /* 大屏每行3个 */
-            }
-            
-            .card {
-                max-width: 800px;
-            }
-            
-            .douyin-btn {
-                width: auto;
-                transform: none;
-                left: 20px;
-                top: 20px;
-            }
-            
-            .douyin-btn:hover {
-                transform: translateY(-2px);
-            }
-        }
-        
-        @media (min-width: 992px) {
-            .btn-item {
-                width: calc(23% - 8px); /* 超大屏每行4个 */
+            .main-title {
+                font-size: 18px;
             }
         }
     </style>
@@ -322,7 +254,7 @@
     <div id="main" class="container">
         <div class="row my-card justify-content-center">
             <div class="col-lg-8 card">
-                <!-- 抖音跳转按钮 - 移动端居中显示 -->
+                <!-- 抖音跳转按钮 - 左上角 -->
                 <a href="https://v.douyin.com/az14Uat6baA/" target="_blank" class="douyin-btn">
                     <i class="fab fa-tiktok"></i>
                     <span>小何搞机日记抖音主页</span>
@@ -355,7 +287,9 @@
                     <a target="_blank" href="http://www.yishimei.cn/network/319.html" class="btn-item">非常好用的激活工具</a>
                     <a target="_blank" href="http://www.ludashi.com/rank/cpuRanking.html" class="btn-item">鲁大师CPU天梯图</a>
                     <a target="_blank" href="http://www.ludashi.com/rank/index.html" class="btn-item">鲁大师显卡天梯图</a>
+                    <!-- 修改后的Win10镜像源下载按钮 -->
                     <a target="_blank" href="https://www.microsoft.com/zh-cn/software-download/windows10ISO" class="btn-item">Win10官网</a>
+                    <!-- 修改后的Win11镜像源下载按钮 -->
                     <a target="_blank" href="https://www.microsoft.com/zh-cn/software-download/windows11" class="btn-item">Win11官网</a>
                 </div>
 
@@ -411,10 +345,12 @@
                 <h3 class="category-title">【各品牌主板灯控下载地址】</h3>
                 <div class="category-container">
                     <a target="_blank" href="https://www.asus.com.cn/supportonly/armoury%20crate/helpdesk_download/" class="btn-item">华硕奥创全系列</a>
+                    <!-- 替换为新的华硕奥创灯控离线版链接 -->
                     <a target="_blank" href="https://d2.qyshare.store/s/TBVWTxUNFQ4FDgYGUVMDGgMCBVYaKFCVA50wBSKFCVA50RpWKFCVA50wKFCVA50FGgNUKFCVA501QFUgBWDgKFCVA50KFCVA50BxUbFVhERH9YREMVDRVYREQZRk5CWRlYRVKFCVA50VGxVYRER8Uk4VDRVCR1tYVlMYBQcFKFCVA50hgGBRgFDhgPDlNUVg4EUxpVKFCVA50KFCVA50VTGgMPBwEaVg9SDxoDU1EBKFCVA50wYBUQIBUgcZVV5ZFRsVVlQVDRUOBKFCVA508KFCVA50DlMCVBpUKFCVA50wBWGgMBBQ4aVgUDVBoEKFCVA50VNWKFCVA50FUPBVRSDlUVGxVZVlpSFQ0V0rq50Jai0pKS0r-s0LaY0bmQ0JGM0I2I0L6_GU1eRxUbFVRYWUNSWUNjTkdSFQ0VVkdHW15UVkNeWFkYTxpNXkcaVFhaR0VSRERSUxUbFVZTFQ0VBlMBKFCVA50wUKFCVA50KFCVA50gEaVgBUKFCVA50BoDKFCVA50lUCGg4GBQYaUlVVKFCVA50KFCVA50KFCVA50CKFCVA501UGBw4OFUo=" class="btn-item">华硕奥创灯控离线版</a>
                     <a target="_blank" href="https://www.gigabyte.cn/Consumer/Software/GIGABYTE-Control-Center/" class="btn-item">技嘉GCC灯控</a>
                     <a target="_blank" href="https://download.gigabyte.cn/FileList/Utility/RGB_Fusion_B24.1202.1.zip?v=460aabcb21812ca4b35bee3c1333d4a1" class="btn-item">技嘉离线灯控</a>
                     <a target="_blank" href="https://www.msi.com/Landing/MSI-Center" class="btn-item">微星灯控</a>
+                    <!-- 新增云盘微星备用灯控按钮 -->
                     <a target="_blank" href="https://wwwk.qyshare.com:2999/s/imv4wv" class="btn-item">云盘备用微星灯控</a>
                     <a target="_blank" href="https://download.maxsun.com.cn:8443/mb/driver/MAXSUN_Software/RGB/MAXSUN_RGB.zip" class="btn-item">铭瑄灯控直接下载</a>
                     <a target="_blank" href="https://jginyue.com.cn/public/upload/JGinYueRGB(beta)1.4.6.exe" class="btn-item">精粤灯控直接下载</a>
