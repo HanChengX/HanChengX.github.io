@@ -30,6 +30,53 @@
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05); /* 轻微阴影提升层次 */
             padding: 30px 20px; /* 内边距优化 */
             margin: 0 auto;
+            position: relative; /* 新增：为抖音按钮绝对定位做准备 */
+        }
+
+        /* 抖音跳转按钮样式 */
+        .douyin-btn {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 16px;
+            background: linear-gradient(135deg, #fe2c55 0%, #ff7a2f 100%);
+            color: white !important;
+            border-radius: 8px;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            box-shadow: 0 3px 8px rgba(254, 44, 85, 0.3);
+            transition: all 0.3s ease;
+            z-index: 10;
+            border: none;
+            cursor: pointer;
+        }
+
+        .douyin-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(254, 44, 85, 0.4);
+            text-decoration: none;
+            color: white !important;
+        }
+
+        .douyin-btn i {
+            font-size: 18px;
+        }
+
+        /* 响应式适配抖音按钮 */
+        @media (max-width: 768px) {
+            .douyin-btn {
+                padding: 6px 12px;
+                font-size: 12px;
+                top: 15px;
+                left: 15px;
+            }
+            .douyin-btn i {
+                font-size: 16px;
+            }
         }
         
         /* 标题栏样式 - 包含logo和文字 */
@@ -39,6 +86,7 @@
             justify-content: center;
             gap: 15px;
             margin-bottom: 20px;
+            margin-top: 10px; /* 新增：给抖音按钮留出空间 */
         }
         
         /* logo图片样式优化 */
@@ -188,6 +236,7 @@
             /* 移动端标题栏适配 */
             .title-bar {
                 gap: 10px;
+                margin-top: 5px;
             }
             .nav-logo {
                 width: 45px;
@@ -205,6 +254,12 @@
     <div id="main" class="container">
         <div class="row my-card justify-content-center">
             <div class="col-lg-8 card">
+                <!-- 抖音跳转按钮 - 左上角 -->
+                <a href="https://v.douyin.com/az14Uat6baA/" target="_blank" class="douyin-btn">
+                    <i class="fab fa-tiktok"></i>
+                    <span>小何搞机日记抖音主页</span>
+                </a>
+
                 <!-- Logo和标题组合栏 -->
                 <div class="title-bar">
                     <img src="static/images/123.jpg" alt="讯领DIY电脑导航" class="nav-logo">
