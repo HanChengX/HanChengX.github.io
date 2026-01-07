@@ -6,11 +6,8 @@
     <title>小何搞机日记</title>
     <meta name="description" content="抖音搜索小何搞机日记">
     <meta name="keywords" content="讯领DIY电脑,东莞DIY电脑">
-    <!-- 注意：如果您的本地路径与之前一致，请保留 static/css/...，如果直接打开此文件可能会报错，建议使用本地服务器或确保文件路径正确 -->
-    <link rel="stylesheet" href="static/css/bootstrap.min.css">
-    <link rel="stylesheet" href="static/css/all.min.css">
-    <link rel="stylesheet" href="static/css/style.css">
     <link rel="shortcut icon" type="image/x-icon" href="static/images/favicon.ico">
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
     <style>
         /* 全局样式优化 */
         * {
@@ -25,12 +22,12 @@
         }
         
         .card {
-            border: 1px solid #e8e8e8; /* 柔和的卡片边框 */
-            border-radius: 12px; /* 圆角更美观 */
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05); /* 轻微阴影提升层次 */
-            padding: 30px 20px; /* 内边距优化 */
+            border: 1px solid #e8e8e8;
+            border-radius: 12px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            padding: 30px 20px;
             margin: 0 auto;
-            position: relative; /* 新增：为抖音按钮绝对定位做准备 */
+            position: relative;
         }
 
         /* 抖音跳转按钮样式 */
@@ -62,7 +59,8 @@
             color: white !important;
         }
 
-        .douyin-btn i {
+        .douyin-btn i::before {
+            content: "📱"; /* 替代原fontawesome图标（因删除了all.min.css） */
             font-size: 18px;
         }
 
@@ -74,7 +72,7 @@
                 top: 15px;
                 left: 15px;
             }
-            .douyin-btn i {
+            .douyin-btn i::before {
                 font-size: 16px;
             }
         }
@@ -86,15 +84,15 @@
             justify-content: center;
             gap: 15px;
             margin-bottom: 20px;
-            margin-top: 10px; /* 新增：给抖音按钮留出空间 */
+            margin-top: 10px;
         }
         
         /* logo图片样式优化 */
         .nav-logo {
-            width: 60px; /* 固定logo宽度 */
-            height: 60px; /* 固定logo高度 */
-            object-fit: cover; /* 保持图片比例 */
-            border-radius: 8px; /* 圆角美化 */
+            width: 60px;
+            height: 60px;
+            object-fit: cover;
+            border-radius: 8px;
         }
         
         /* 标题文字样式 */
@@ -110,15 +108,15 @@
             width: 65%;
             height: 37px;
             border: 2px solid #004085;
-            outline: none; /* 修正原hidden错误 */
-            border-radius: 6px; /* 搜索框圆角优化 */
+            outline: none;
+            border-radius: 6px;
             margin: 0 auto;
             position: relative;
             transition: border-color 0.3s ease;
         }
         
         .searchBox:focus-within {
-            border-color: #0062cc; /* 输入时边框变色 */
+            border-color: #0062cc;
         }
         
         .inputBox{
@@ -140,11 +138,10 @@
             position: absolute;
             right: 0;
             top: 0;
-            outline: none;
             color: white;
             font-size: 13px;
             background-color: #004085;
-            border-radius: 0 4px 4px 0; /* 按钮圆角匹配搜索框 */
+            border-radius: 0 4px 4px 0;
             cursor: pointer;
             transition: background-color 0.3s ease;
         }
@@ -168,7 +165,7 @@
             margin-top: 1%;
             display: inline-block;
             white-space: nowrap;
-            border-radius: 6px; /* 按钮圆角统一 */
+            border-radius: 6px;
             transition: background-color 0.3s ease;
         }
         
@@ -185,8 +182,8 @@
             overflow: hidden;
             margin: 15px 0;
             padding: 10px;
-            border-left: 3px solid #004085; /* 分类左侧边框装饰 */
-            background-color: #f9f9f9; /* 分类背景色区分 */
+            border-left: 3px solid #004085;
+            background-color: #f9f9f9;
             border-radius: 0 6px 6px 0;
         }
         
@@ -196,16 +193,16 @@
             color: #004085;
             font-weight: 600;
             padding-bottom: 8px;
-            border-bottom: 1px solid #e8e8e8; /* 标题下边框分隔 */
+            border-bottom: 1px solid #e8e8e8;
         }
         
         /* 备案信息样式 - 完全居中+美化 */
         .beian-container {
             width: 100%;
-            margin: 30px 0 10px 0; /* 增加上下间距 */
+            margin: 30px 0 10px 0;
             padding-top: 15px;
-            border-top: 1px solid #e8e8e8; /* 顶部边框分隔 */
-            text-align: center !important; /* 强制居中 */
+            border-top: 1px solid #e8e8e8;
+            text-align: center !important;
         }
         
         .beian-link {
@@ -223,7 +220,7 @@
         /* 响应式适配 */
         @media (max-width: 768px) {
             .searchBox {
-                width: 90%; /* 移动端搜索框更宽 */
+                width: 90%;
             }
             .btn-item {
                 font-size: 14px;
@@ -233,7 +230,6 @@
             .card {
                 padding: 20px 15px;
             }
-            /* 移动端标题栏适配 */
             .title-bar {
                 gap: 10px;
                 margin-top: 5px;
@@ -247,16 +243,15 @@
             }
         }
     </style>
-    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
 </head>
 
 <body>
     <div id="main" class="container">
-        <div class="row my-card justify-content-center">
+        <div class="row justify-content-center">
             <div class="col-lg-8 card">
                 <!-- 抖音跳转按钮 - 左上角 -->
                 <a href="https://v.douyin.com/az14Uat6baA/" target="_blank" class="douyin-btn">
-                    <i class="fab fa-tiktok"></i>
+                    <i></i>
                     <span>小何搞机日记抖音主页</span>
                 </a>
 
@@ -287,9 +282,7 @@
                     <a target="_blank" href="http://www.yishimei.cn/network/319.html" class="btn-item">非常好用的激活工具</a>
                     <a target="_blank" href="http://www.ludashi.com/rank/cpuRanking.html" class="btn-item">鲁大师CPU天梯图</a>
                     <a target="_blank" href="http://www.ludashi.com/rank/index.html" class="btn-item">鲁大师显卡天梯图</a>
-                    <!-- 修改后的Win10镜像源下载按钮 -->
                     <a target="_blank" href="https://www.microsoft.com/zh-cn/software-download/windows10ISO" class="btn-item">Win10官网</a>
-                    <!-- 修改后的Win11镜像源下载按钮 -->
                     <a target="_blank" href="https://www.microsoft.com/zh-cn/software-download/windows11" class="btn-item">Win11官网</a>
                 </div>
 
@@ -346,12 +339,10 @@
                 <h3 class="category-title">【各品牌主板灯控下载地址】</h3>
                 <div class="category-container">
                     <a target="_blank" href="https://www.asus.com.cn/supportonly/armoury%20crate/helpdesk_download/" class="btn-item">华硕奥创全系列</a>
-                    <!-- 替换为新的华硕奥创灯控离线版链接 -->
                     <a target="_blank" href="https://d2.qyshare.store/s/TBVWTxUNFQ4FDgYGUVMDGgMCBVYaKFCVA50wBSKFCVA50RpWKFCVA50wKFCVA50FGgNUKFCVA501QFUgBWDgKFCVA50KFCVA50BxUbFVhERH9YREMVDRVYREQZRk5CWRlYRVKFCVA50VGxVYRER8Uk4VDRVCR1tYVlMYBQcFKFCVA50hgGBRgFDhgPDlNUVg4EUxpVKFCVA50KFCVA50VTGgMPBwEaVg9SDxoDU1EBKFCVA50wYBUQIBUgcZVV5ZFRsVVlQVDRUOBKFCVA508KFCVA50DlMCVBpUKFCVA50wBWGgMBBQ4aVgUDVBoEKFCVA50VNWKFCVA50FUPBVRSDlUVGxVZVlpSFQ0V0rq50Jai0pKS0r-s0LaY0bmQ0JGM0I2I0L6_GU1eRxUbFVRYWUNSWUNjTkdSFQ0VVkdHW15UVkNeWFkYTxpNXkcaVFhaR0VSRERSUxUbFVZTFQ0VBlMBKFCVA50wUKFCVA50KFCVA50gEaVgBUKFCVA50BoDKFCVA50lUCGg4GBQYaUlVVKFCVA50KFCVA50KFCVA50CKFCVA501UGBw4OFUo=" class="btn-item">华硕奥创灯控离线版</a>
                     <a target="_blank" href="https://www.gigabyte.cn/Consumer/Software/GIGABYTE-Control-Center/" class="btn-item">技嘉GCC灯控</a>
                     <a target="_blank" href="https://download.gigabyte.cn/FileList/Utility/RGB_Fusion_B24.1202.1.zip?v=460aabcb21812ca4b35bee3c1333d4a1" class="btn-item">技嘉离线灯控</a>
                     <a target="_blank" href="https://www.msi.com/Landing/MSI-Center" class="btn-item">微星灯控</a>
-                    <!-- 新增云盘微星备用灯控按钮 -->
                     <a target="_blank" href="https://wwwk.qyshare.com:2999/s/imv4wv" class="btn-item">云盘备用微星灯控</a>
                     <a target="_blank" href="https://download.maxsun.com.cn:8443/mb/driver/MAXSUN_Software/RGB/MAXSUN_RGB.zip" class="btn-item">铭瑄灯控直接下载</a>
                     <a target="_blank" href="https://jginyue.com.cn/public/upload/JGinYueRGB(beta)1.4.6.exe" class="btn-item">精粤灯控直接下载</a>
@@ -360,7 +351,7 @@
 
                 <!-- 备案信息 - 独立容器完全居中 -->
                 <div class="beian-container">
-                    <h4 class="mb-0">
+                    <h4>
                         <a href="https://beian.miit.gov.cn/" target="_blank" class="beian-link">粤ICP备20250051282号</a>
                     </h4>
                 </div>
