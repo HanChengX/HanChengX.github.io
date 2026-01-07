@@ -191,6 +191,32 @@
             text-decoration: none;
             box-shadow: 0 2px 5px rgba(0, 64, 133, 0.3);
         }
+
+        /* ========== 新增：买电脑找他 专属按钮样式 ========== */
+        .buy-computer-btn {
+            background: linear-gradient(135deg, #e53e3e 0%, #c53030 100%) !important; /* 红色渐变，优先级高于通用样式 */
+            font-weight: 600 !important; /* 字体加粗更醒目 */
+            box-shadow: 0 3px 8px rgba(229, 62, 62, 0.3) !important;
+            transform: scale(1.02); /* 轻微放大，突出显示 */
+        }
+
+        .buy-computer-btn:hover {
+            background: linear-gradient(135deg, #c53030 0%, #a42525 100%) !important;
+            transform: translateY(-2px) scale(1.02) !important; /* 悬浮上移+保持放大 */
+            box-shadow: 0 5px 12px rgba(229, 62, 62, 0.4) !important;
+        }
+
+        /* 响应式适配专属按钮 */
+        @media (max-width: 768px) {
+            .buy-computer-btn {
+                transform: scale(1); /* 移动端取消放大，避免挤乱布局 */
+                font-size: 14px !important;
+            }
+            .buy-computer-btn:hover {
+                transform: translateY(-1px) scale(1) !important;
+            }
+        }
+        /* ========== 新增样式结束 ========== */
         
         /* 分类容器样式 */
         .category-container {
@@ -296,7 +322,8 @@
                 <!-- 便捷工具分类 -->
                 <h3 class="category-title">【便捷工具】</h3>
                 <div class="category-container">
-                    <a target="_blank" href="https://www.kdocs.cn/l/crON5nNzg4k3" class="btn-item" style="color: red;">买电脑找他</a>
+                    <!-- ========== 修改：给按钮添加专属样式类，移除原有内联color ========== -->
+                    <a target="_blank" href="https://www.kdocs.cn/l/crON5nNzg4k3" class="btn-item buy-computer-btn">买电脑找他</a>
                     <a target="_blank" href="https://filehelper.weixin.qq.com/" class="btn-item">微信传输助手</a>
                     <a target="_blank" href="https://www.tbtool.cn/" class="btn-item">图吧工具箱</a>
                     <a target="_blank" href="https://next.itellyou.cn/" class="btn-item">全版本Windows系统</a>
