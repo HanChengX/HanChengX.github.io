@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
@@ -8,110 +9,106 @@
     <meta name="keywords" content="讯领DIY电脑,东莞DIY电脑">
     <link rel="shortcut icon" type="image/x-icon" href="static/images/favicon.ico">
     <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+    <!-- 引入Bootstrap依赖 -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
     <style>
-        /* 全局样式优化 */
+        /* 全局样式重置 */
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
         }
         
-        /* 主容器边框美化 */
+        /* 主容器样式 */
         #main {
-            padding: 20px 0;
+            padding: 10px 0;
         }
         
+        /* 核心卡片样式 */
         .card {
             border: 1px solid #e8e8e8;
             border-radius: 12px;
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
-            padding: 30px 20px;
+            padding: 20px 15px;
             margin: 0 auto;
-            position: relative;
+            width: 95%;
+            max-width: 1400px;
+            margin-top: 80px; /* 给顶部固定按钮留出空间 */
         }
-
-        /* 抖音跳转按钮样式（通用） */
+        
+        /* ========== 抖音按钮核心样式（固定定位） ========== */
         .douyin-btn {
-            position: absolute;
-            top: 20px;
+            position: fixed; /* 绝对固定，滚动页面不移动 */
+            top: 0; /* 贴紧网页顶部 */
             display: inline-flex;
             align-items: center;
             gap: 8px;
-            padding: 8px 16px;
+            padding: 10px 20px;
             background: linear-gradient(135deg, #fe2c55 0%, #ff7a2f 100%);
             color: white !important;
-            border-radius: 8px;
+            border-radius: 0 0 8px 8px; /* 顶部贴边，只保留右下角/左下角圆角 */
             text-decoration: none;
             font-size: 14px;
             font-weight: 500;
             box-shadow: 0 3px 8px rgba(254, 44, 85, 0.3);
             transition: all 0.3s ease;
-            z-index: 10;
+            z-index: 9999; /* 最高层级，不被任何内容遮挡 */
             border: none;
             cursor: pointer;
         }
-
-        /* 左侧抖音按钮（原有） */
+        
+        /* 小何搞机日记 - 网页最左上角 */
         .douyin-btn-left {
-            left: 20px;
+            left: 0; /* 贴紧网页左侧 */
         }
-
-        /* 右侧抖音按钮（新增） */
+        
+        /* 小欧DIY电脑 - 网页最右上角 */
         .douyin-btn-right {
-            right: 20px;
-            /* 区分样式：调整渐变色调，也可以保持和左侧一致 */
+            right: 0; /* 贴紧网页右侧 */
             background: linear-gradient(135deg, #ff7a2f 0%, #fe2c55 100%);
+            border-radius: 0 0 0 8px; /* 右上角按钮保留左下角圆角 */
         }
-
+        
+        /* 按钮hover效果 */
         .douyin-btn:hover {
-            transform: translateY(-2px);
+            transform: translateY(2px);
             box-shadow: 0 5px 15px rgba(254, 44, 85, 0.4);
             text-decoration: none;
             color: white !important;
         }
-
+        
         .douyin-btn i::before {
-            content: "📱"; /* 替代原fontawesome图标 */
+            content: "📱";
             font-size: 18px;
         }
-
-        /* 响应式适配抖音按钮 */
+        
+        /* 移动端适配 */
         @media (max-width: 768px) {
             .douyin-btn {
-                padding: 6px 12px;
+                padding: 8px 12px;
                 font-size: 12px;
-                top: 15px;
-            }
-            .douyin-btn-left {
-                left: 15px;
-            }
-            .douyin-btn-right {
-                right: 15px;
             }
             .douyin-btn i::before {
                 font-size: 16px;
             }
+            .card {
+                margin-top: 70px;
+                width: 98%;
+            }
         }
         
-        /* 标题栏样式 - 包含logo和文字 */
+        /* 标题栏样式 */
         .title-bar {
             display: flex;
             align-items: center;
             justify-content: center;
             gap: 15px;
-            margin-bottom: 20px;
+            margin-bottom: 15px;
             margin-top: 10px;
         }
         
-        /* logo图片样式优化 */
-        .nav-logo {
-            width: 60px;
-            height: 60px;
-            object-fit: cover;
-            border-radius: 8px;
-        }
-        
-        /* 标题文字样式 */
         .main-title {
             font-size: 24px;
             font-weight: 700;
@@ -121,7 +118,7 @@
         
         /* 搜索框样式 */
         .searchBox{
-            width: 65%;
+            width: 80%;
             height: 37px;
             border: 2px solid #004085;
             outline: none;
@@ -129,6 +126,7 @@
             margin: 0 auto;
             position: relative;
             transition: border-color 0.3s ease;
+            display: flex;
         }
         
         .searchBox:focus-within {
@@ -166,7 +164,7 @@
             background-color: #0062cc;
         }
         
-        /* 按钮样式优化 */
+        /* 功能按钮样式 */
         .btn-item {
             width: auto;
             height: 36px;
@@ -177,8 +175,8 @@
             text-align: center;
             text-decoration: none;
             padding: 6px 12px;
-            margin-left: 1%;     
-            margin-top: 1%;
+            margin-left: 0.5%;
+            margin-top: 0.5%;
             display: inline-block;
             white-space: nowrap;
             border-radius: 6px;
@@ -191,7 +189,6 @@
             text-decoration: none;
             box-shadow: 0 2px 5px rgba(0, 64, 133, 0.3);
         }
-
         /* ========== 新增：买电脑找他 专属按钮样式 ========== */
         .buy-computer-btn {
             background: linear-gradient(135deg, #e53e3e 0%, #c53030 100%) !important; /* 红色渐变，优先级高于通用样式 */
@@ -199,49 +196,30 @@
             box-shadow: 0 3px 8px rgba(229, 62, 62, 0.3) !important;
             transform: scale(1.02); /* 轻微放大，突出显示 */
         }
-
-        .buy-computer-btn:hover {
-            background: linear-gradient(135deg, #c53030 0%, #a42525 100%) !important;
-            transform: translateY(-2px) scale(1.02) !important; /* 悬浮上移+保持放大 */
-            box-shadow: 0 5px 12px rgba(229, 62, 62, 0.4) !important;
-        }
-
-        /* 响应式适配专属按钮 */
-        @media (max-width: 768px) {
-            .buy-computer-btn {
-                transform: scale(1); /* 移动端取消放大，避免挤乱布局 */
-                font-size: 14px !important;
-            }
-            .buy-computer-btn:hover {
-                transform: translateY(-1px) scale(1) !important;
-            }
-        }
-        /* ========== 新增样式结束 ========== */
         
         /* 分类容器样式 */
         .category-container {
             width: 100%;
             overflow: hidden;
-            margin: 15px 0;
+            margin: 10px 0;
             padding: 10px;
             border-left: 3px solid #004085;
             background-color: #f9f9f9;
             border-radius: 0 6px 6px 0;
         }
         
-        /* 标题样式优化 */
         .category-title {
-            margin: 25px 0 10px 0;
+            margin: 20px 0 8px 0;
             color: #004085;
             font-weight: 600;
             padding-bottom: 8px;
             border-bottom: 1px solid #e8e8e8;
         }
         
-        /* 备案信息样式 - 完全居中+美化 */
+        /* 备案信息样式 */
         .beian-container {
             width: 100%;
-            margin: 30px 0 10px 0;
+            margin: 20px 0 10px 0;
             padding-top: 15px;
             border-top: 1px solid #e8e8e8;
             text-align: center !important;
@@ -258,70 +236,43 @@
             color: #004085;
             text-decoration: none;
         }
-        
-        /* 响应式适配 */
-        @media (max-width: 768px) {
-            .searchBox {
-                width: 90%;
-            }
-            .btn-item {
-                font-size: 14px;
-                margin-left: 0.5%;
-                padding: 6px 8px;
-            }
-            .card {
-                padding: 20px 15px;
-            }
-            .title-bar {
-                gap: 10px;
-                margin-top: 5px;
-            }
-            .nav-logo {
-                width: 45px;
-                height: 45px;
-            }
-            .main-title {
-                font-size: 18px;
-            }
-        }
     </style>
 </head>
-
 <body>
+    <!-- 小何搞机日记 - 网页最左上角（固定） -->
+    <a href="https://v.douyin.com/az14Uat6baA/" target="_blank" class="douyin-btn douyin-btn-left">
+        <i></i>
+        <span>小何搞机日记抖音主页</span>
+    </a>
+
+    <!-- 小欧DIY电脑 - 网页最右上角（固定） -->
+    <a href="https://v.douyin.com/uGzphDyP11o/" target="_blank" class="douyin-btn douyin-btn-right">
+        <i></i>
+        <span>小欧DIY电脑抖音主页</span>
+    </a>
+
     <div id="main" class="container">
         <div class="row justify-content-center">
-            <div class="col-lg-8 card">
-                <!-- 左侧抖音按钮 - 原有 -->
-                <a href="https://v.douyin.com/az14Uat6baA/" target="_blank" class="douyin-btn douyin-btn-left">
-                    <i></i>
-                    <span>小何搞机日记抖音主页</span>
-                </a>
-
-                <!-- 右侧抖音按钮 - 新增 -->
-                <a href="https://v.douyin.com/uGzphDyP11o/" target="_blank" class="douyin-btn douyin-btn-right">
-                    <i></i>
-                    <span>小欧DIY电脑抖音主页</span>
-                </a>
-
-                <!-- Logo和标题组合栏 -->
+            <div class="card">
+                <!-- 标题栏 -->
                 <div class="title-bar">
-                    <h1 class="main-title">东莞讯领DIY电脑 | 小何搞机日记 | 小欧DIY电脑</h1>
+                    <h1 class="main-title">认准抖音三家店铺：东莞讯领DIY电脑 | 讯领DIY电脑 | 讯领电脑</h1>
                 </div>
 
-                <!-- 搜索框 -->
+                <!-- 搜索框（修复后） -->
                 <div class="searchBox">
-                    <form action="https://www.baidu.com/baidu" target="_blank">
-                        <input name="tn" type="hidden" value="baidu">
-                        <input class="inputBox" type="text" name="word" size="30" placeholder="请输入搜索内容...">
-                        <input class="searchBtn" type="submit" value="百度一下">
+                    <form action="https://cn.bing.com/search" method="get" target="_blank">
+                        <input name="mkt" type="hidden" value="zh-cn">
+                        <input class="inputBox" type="text" name="q" size="30" placeholder="请输入搜索内容...">
+                        <input class="searchBtn" type="submit" value="必应搜索">
                     </form>
                 </div>
 
-                <div style="height: 1.5em;"></div>
+                <div style="height: 1em;"></div>
 
-                <!-- 便捷工具分类 -->
+                <!-- 便捷工具 -->
                 <h3 class="category-title">【便捷工具】</h3>
-                <div class="category-container">
+      <div class="category-container">
                     <!-- ========== 修改：给按钮添加专属样式类，移除原有内联color ========== -->
                     <a target="_blank" href="https://www.kdocs.cn/l/crON5nNzg4k3" class="btn-item buy-computer-btn">买电脑找他</a>
                     <a target="_blank" href="https://filehelper.weixin.qq.com/" class="btn-item">微信传输助手</a>
@@ -334,7 +285,7 @@
                     <a target="_blank" href="https://www.microsoft.com/zh-cn/software-download/windows11" class="btn-item">Win11官网</a>
                 </div>
 
-                <!-- 装机工具分类 -->
+                <!-- 装机工具 -->
                 <h3 class="category-title">【装机工具】</h3>
                 <div class="category-container">
                     <a target="_blank" href="https://xiaodao.lanzoui.com/ilMRz2ng9igf" class="btn-item">DDU显卡卸载工具</a>
@@ -342,30 +293,35 @@
                     <a target="_blank" href="https://www.nvidia.cn/drivers/lookup/" class="btn-item">N卡显卡驱动</a>
                     <a target="_blank" href="https://xiaodao.lanzout.com/iojuO2ff7ydc" class="btn-item">驱动总裁单机版</a>
                     <a target="_blank" href="https://kms.cx/" class="btn-item">全能激活工具</a>
-                    <a target="_blank" href="https://xiaodao.lanzoux.com/iXUwbkv00ta" class="btn-item">鲁大师超级纯净版</a>
+                    <a target="_blank" href="https://xiaodao.lanzout.com/b032dearri" class="btn-item">鲁大师超级纯净版</a>
                     <a target="_blank" href="https://zhuoge.lanzoul.com/iPo2l2p5ky0h" class="btn-item">WinRAR压缩</a>
-                    <a target="_blank" href="https://www.speedtest.cn/" class="btn-item">测网速</a>
+                    <a target="_blank" href="https://xiaodao.lanzout.com/iKt2Z38ux72j" class="btn-item">Windows暂停更新工具</a>
                     <a target="_blank" href="https://www.lanzoum.com/b0cvyyowd" class="btn-item">鲁大师驱动单独版</a>
                     <a target="_blank" href="https://xiaogao.lanzoui.com/isPGy0rixc2d" class="btn-item">引导修复</a>
+                    <a target="_blank" href="https://xiaodao.lanzout.com/b032djzpnc" class="btn-item">火绒强力卸载单机版</a>
+                    <a target="_blank" href="https://xiaodao.lanzout.com/b032den8te" class="btn-item">火绒弹窗拦截单机版</a>
+                    <a target="_blank" href="https://xiaodao.lanzout.com/iAqKj398p7tc" class="btn-item">微软系统一键下载</a>
+                    <a target="_blank" href="https://xiaodao.lanzout.com/b032c3whmd" class="btn-item">IDM下载绿色版</a>
                     <a target="_blank" href="http://www.tianjifeng.com/app/Digital-J15.exe" class="btn-item">天极风J15数显</a>
                     <a target="_blank" href="https://dl.valkyrie.com.cn/drive/Mytch.cool.exe" class="btn-item">瓦尔基里屏显</a>
-                    <a target="_blank" href="https://files.zohopublic.com.cn/public/workdrive-public/download/4oaq45d9deb1ad6d94e44bdc9cb79e8eea0a3?x-cli-msg=%7B%22linkId%22%3A%221IXoDshgnjv-38cTf%22%2C%22isFileOwner%22%3Afalse%2C%22version%22%3A%221.0%22%2C%22isWDSupport%22%3Afalse%7D" class="btn-item">利民屏显</a>
+                    <a target="_blank" href="https://files.zohopublic.com.cn/public/workdrive-public/download/hstg86d96e562348b45339d3445ba10545f1a?x-cli-msg=%7B%22linkId%22%3A%221JT1ZPDZhfc-38zSx%22%2C%22isFileOwner%22%3Afalse%2C%22version%22%3A%221.0%22%2C%22isWDSupport%22%3Afalse%7D" class="btn-item">利民屏显</a>
                     <a target="_blank" href="https://lgb123-1253504678.cos.ap-beijing.myqcloud.com/TURZX-V3.09.rar" class="btn-item">图灵智显</a>
                 </div>
 
-                <!-- 常用工具分类 -->
+                <!-- 常用工具 -->
                 <h3 class="category-title">【常用工具】</h3>
                 <div class="category-container">
                     <a target="_blank" href="https://xiaodao.lanzout.com/ifk7I2aky6sb" class="btn-item">火绒弹窗拦截单机版</a>
                     <a target="_blank" href="https://xiaogao.lanzoui.com/ijqDZ2o40evg" class="btn-item">系统垃圾清理工具</a>
                     <a target="_blank" href="https://wwwk.qyshare.com:2083/s/qmc1wx" class="btn-item">屏蔽系统自动更新工具</a>
                     <a target="_blank" href="https://xiaogao.lanzouv.com/ih6LL2qfx7pe" class="btn-item">Fan Control风扇控制</a>
+                    <a target="_blank" href="https://xiaodao.lanzoux.com/b0dq19v5g" class="btn-item">搜狗输入法绿色版</a>
                     <a target="_blank" href="https://xiaogao.lanzoum.com/b0cz86g5i" class="btn-item">微软运行库每月更新</a>
                     <a target="_blank" href="https://download.gigabyte.cn/FileList/Utility/mb_utility_atbios_B24.0130.1.zip?v=792b86971cbb961cea4086323e0aff75" class="btn-item">技嘉@BIOS工具</a>
                     <a target="_blank" href="https://xiaogao.lanzoux.com/iSWW82p08q7e" class="btn-item">PotPlayer 播放器绿色版</a>
                 </div>
 
-                <!-- 各大软件官网分类 -->
+                <!-- 各大软件官网 -->
                 <h3 class="category-title">【各大软件官网】</h3>
                 <div class="category-container">
                     <a target="_blank" href="https://store.steampowered.com/about/" class="btn-item">STEAM正版下载地址</a>
@@ -374,11 +330,11 @@
                     <a target="_blank" href="https://www.maxsun.com.cn/down/mb/intel/" class="btn-item">铭瑄BIOS搜索</a>
                     <a target="_blank" href="https://www.asus.com.cn/support/download-center/" class="btn-item">华硕BIOS搜索</a>
                     <a target="_blank" href="https://www.msi.cn/Landing/afterburner/graphics-cards" class="btn-item">微星小飞机</a>
-                    <a target="_blank" href="https://www.xunlei.com/" class="btn-item">迅雷官网</a>
+                    <a target="_blank" href="https://xiaodao.lanzout.com/iO4Yd3jyx4ti/" class="btn-item">迅雷精简版</a>
                     <a target="_blank" href="https://sunlogin.oray.com/download?categ=personal&sys=windows&ici=sunlogin_navigation" class="btn-item">向日葵下载地址</a>
                 </div>
 
-                <!-- 各品牌主板灯控下载地址分类 -->
+                <!-- 各品牌主板灯控 -->
                 <h3 class="category-title">【各品牌主板灯控下载地址】</h3>
                 <div class="category-container">
                     <a target="_blank" href="https://www.asus.com.cn/supportonly/armoury%20crate/helpdesk_download/" class="btn-item">华硕奥创全系列</a>
@@ -392,7 +348,7 @@
                     <a target="_blank" href="http://dl.onda.cn/2025/DRIVER/ONDARGB-INSTALLER-2.0.5-OFFLINE-GPIO.ZIP" class="btn-item">昂达H610E-B灯控直接下载</a>
                 </div>
 
-                <!-- 备案信息 - 独立容器完全居中 -->
+                <!-- 备案信息 -->
                 <div class="beian-container">
                     <h4>
                         <a href="https://beian.miit.gov.cn/" target="_blank" class="beian-link">粤ICP备20250051282号</a>
